@@ -15,11 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware'=>['isLogin2']],function (){
+    Route::get('detail/{id}','Home\IndexController@detail');
+//Route::get('shouye','Home\IndexController@shouye');
+//评论
+    Route::post('comment','Home\IndexController@comment');
+});
 //前台路由
 Route::get('index','Home\IndexController@index');
 Route::get('lists/{id}','Home\IndexController@lists');
-Route::get('detain/{id}','Home\IndexController@detail');
-Route::get('shouye','Home\IndexController@shouye');
+//Route::get('detail/{id}','Home\IndexController@detail');
+////Route::get('shouye','Home\IndexController@shouye');
+////评论
+//Route::post('comment','Home\IndexController@comment');
 //后台登录路由
 Route::get('admin/login', 'Admin\LoginController@login');
 //验证码
