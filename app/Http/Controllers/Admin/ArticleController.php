@@ -135,6 +135,20 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = Article::find($id)->delete();
+        //如果删除成功
+        if($res){
+            $data = [
+                'status'=>0,
+                'message'=>'删除成功'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'message'=>'删除失败'
+            ];
+        }
+
+        return $data;
     }
 }
